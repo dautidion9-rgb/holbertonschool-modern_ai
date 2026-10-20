@@ -25,6 +25,7 @@ def scroll_and_scrape(url, scroll_pause=2.0):
     options.add_argument("--headless")
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--no-sandbox")
+    options.add_argument("--blink-settings=imagesEnabled=false")
     driver = webdriver.Chrome(options=options)
     products = []
     seen = set()
@@ -35,12 +36,18 @@ def scroll_and_scrape(url, scroll_pause=2.0):
         while True:
             driver.execute_script(
                 "window.scrollTo(0, document.body.scrollHeight);")
-            time.sleep(scroll_pause)
-            new_height = driver.execute_script(
-                "return document.body.scrollHeight")
-            if new_height == last_height:
+            deadline = time.time() + scroll_pause
+            grew = False
+            while time.time() < deadline:
+                time.sleep(0.1)
+                new_height = driver.execute_script(
+                    "return document.body.scrollHeight")
+                if new_height != last_height:
+                    last_height = new_height
+                    grew = True
+                    break
+            if not grew:
                 break
-            last_height = new_height
         for card in driver.find_elements("css selector", "div.thumbnail"):
             title = card.find_element(
                 "css selector", "a.title").get_attribute("title")
