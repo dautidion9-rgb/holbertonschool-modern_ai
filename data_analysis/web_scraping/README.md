@@ -29,3 +29,4 @@ and dynamic websites.
 | `0-fetch_html.py` | Fetch and print the raw HTML content of a web page |
 | `1-scrape_basic.py` | Scrape quote text, author and tags from a static quotes page |
 | `2-scrape_paginated.py` | Follow "Next" links to scrape quotes from all pages |
+| `3-scrape_via_api.py` | Fetch all quotes from the site's JSON API endpoints |
