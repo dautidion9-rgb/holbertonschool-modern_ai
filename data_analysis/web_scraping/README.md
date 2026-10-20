@@ -34,3 +34,4 @@ and dynamic websites.
 | `5-login_and_scrape.py` | Log in with a session and CSRF token, then scrape quotes |
 | `6-products_list.py` | Scrape product cards from a static page with headless Selenium |
 | `7-product_detail.py` | Scrape one product's detail page, counting its star rating |
+| `8-scroll_and_scrape.py` | Scroll an infinite-scroll page to the end and scrape unique products |
