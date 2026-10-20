@@ -27,11 +27,10 @@ def login_and_scrape(login_url, user, pwd):
     soup = BeautifulSoup(response.text, "html.parser")
     token_input = soup.find("input", {"name": "csrf_token"})
     payload = {
+        "csrf_token": token_input["value"],
         "username": user,
         "password": pwd
     }
-    if token_input:
-        payload["csrf_token"] = token_input["value"]
     response = session.post(login_url, data=payload, timeout=10)
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
