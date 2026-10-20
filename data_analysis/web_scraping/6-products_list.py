@@ -2,7 +2,6 @@
 """Module that scrapes products from a static e-commerce page."""
 import time
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 
 
 def scrape_products_list(url):
@@ -26,14 +25,14 @@ def scrape_products_list(url):
     try:
         driver.get(url)
         time.sleep(1)
-        for card in driver.find_elements(By.CLASS_NAME, "thumbnail"):
+        for card in driver.find_elements("class name", "thumbnail"):
             title = card.find_element(
-                By.CLASS_NAME, "title").get_attribute("title")
-            price = card.find_element(By.CLASS_NAME, "price").text
+                "class name", "title").get_attribute("title")
+            price = card.find_element("class name", "price").text
             description = card.find_element(
-                By.CLASS_NAME, "description").text
+                "class name", "description").text
             rating = card.find_element(
-                By.CSS_SELECTOR, ".ratings p[data-rating]"
+                "css selector", ".ratings p[data-rating]"
             ).get_attribute("data-rating")
             products.append({
                 "title": title,
