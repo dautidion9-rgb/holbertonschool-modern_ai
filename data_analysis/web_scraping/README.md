@@ -27,3 +27,4 @@ and dynamic websites.
 | File | Description |
 | ---- | ----------- |
 | `0-fetch_html.py` | Fetch and print the raw HTML content of a web page |
+| `1-scrape_basic.py` | Scrape quote text, author and tags from a static quotes page |
