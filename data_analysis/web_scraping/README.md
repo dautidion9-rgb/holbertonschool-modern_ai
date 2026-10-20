@@ -32,3 +32,4 @@ and dynamic websites.
 | `3-scrape_via_api.py` | Fetch all quotes from the site's JSON API endpoints |
 | `4-extract_jsonld.py` | Extract quotes from embedded JSON-LD script blocks |
 | `5-login_and_scrape.py` | Log in with a session and CSRF token, then scrape quotes |
+| `6-products_list.py` | Scrape product cards from a static page with headless Selenium |
