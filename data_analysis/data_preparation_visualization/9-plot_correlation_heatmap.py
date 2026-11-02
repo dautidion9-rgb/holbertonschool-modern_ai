@@ -19,6 +19,9 @@ def plot_correlation_heatmap(df):
     plt.figure(figsize=(6, 5))
 
     corr = df.select_dtypes(include="number").corr()
-    sns.heatmap(corr, annot=True, cmap="coolwarm", vmin=-1, vmax=1)
-    plt.title("Correlation Matrix")
+
+    sns.heatmap(corr, annot=True, fmt=".2f", cmap="coolwarm",
+                vmin=-1, vmax=1)
+    plt.title("Correlation Heatmap")
+
     plt.show()
