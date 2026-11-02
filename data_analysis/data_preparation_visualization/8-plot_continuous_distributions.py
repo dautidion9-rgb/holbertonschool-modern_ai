@@ -20,7 +20,8 @@ def plot_continuous_distributions(df, columns_to_plot=None):
         None
     """
     if columns_to_plot is None:
-        columns_to_plot = df.select_dtypes(include="number").columns.tolist()
+        columns_to_plot = df.select_dtypes(
+            include=[np.number]).columns.tolist()
 
     n_cols = len(columns_to_plot)
     fig, axes = plt.subplots(n_cols, 2, figsize=(10, 3*n_cols))
@@ -34,7 +35,7 @@ def plot_continuous_distributions(df, columns_to_plot=None):
         axes[i, 0].hist(data, bins=30, density=True, alpha=0.7,
                         edgecolor='black')
         kde = stats.gaussian_kde(data)
-        x = np.linspace(data.min(), data.max(), 1000)
+        x = np.linspace(data.min(), data.max(), 200)
         axes[i, 0].plot(x, kde(x), 'r--')
         axes[i, 0].set_title(f"{col} Histogram + KDE")
 
