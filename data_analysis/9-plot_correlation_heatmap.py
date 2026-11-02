@@ -22,6 +22,5 @@ def plot_correlation_heatmap(df):
 
     sns.heatmap(corr, annot=True, fmt=".2f", cmap="coolwarm",
                 vmin=-1, vmax=1)
-    plt.title("Correlation Heatmap")
 
     plt.show()
