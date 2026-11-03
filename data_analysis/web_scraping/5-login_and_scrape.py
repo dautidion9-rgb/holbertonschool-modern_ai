@@ -43,3 +43,4 @@ def login_and_scrape(login_url, user, pwd):
                      for tag in quote.find_all("a", class_="tag")]
         })
     return quotes
+
