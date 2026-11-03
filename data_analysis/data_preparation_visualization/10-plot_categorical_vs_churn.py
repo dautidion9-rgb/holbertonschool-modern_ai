@@ -13,8 +13,9 @@ def plot_categorical_vs_churn(df, columns_to_plot=None):
 
     Args:
         df: pandas DataFrame
-        columns_to_plot: optional list of categorical columns to plot;
-            if None, all non-numeric columns except Churn are used
+        columns_to_plot: optional column name or list of categorical
+            columns to plot; if None, all non-numeric columns except
+            Churn are used
 
     Returns:
         None
@@ -22,10 +23,13 @@ def plot_categorical_vs_churn(df, columns_to_plot=None):
     if columns_to_plot is None:
         columns_to_plot = df.select_dtypes(
             exclude="number").columns.drop("Churn").tolist()
+    elif isinstance(columns_to_plot, str):
+        columns_to_plot = [columns_to_plot]
 
-    n_cols = 3
+    n_cols = min(3, len(columns_to_plot))
     n_rows = math.ceil(len(columns_to_plot) / n_cols)
-    fig, axes = plt.subplots(n_rows, n_cols, figsize=(5*n_cols, 4*n_rows))
+    fig, axes = plt.subplots(n_rows, n_cols, figsize=(5*n_cols, 4*n_rows),
+                             squeeze=False)
     axes = axes.flatten()
 
     for i, col in enumerate(columns_to_plot):
