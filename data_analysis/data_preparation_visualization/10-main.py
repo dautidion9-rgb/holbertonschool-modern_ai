@@ -6,4 +6,4 @@ plot_categorical_vs_churn = __import__(
 
 
 df = pd.read_csv('precleaned-Telco-Customer-Churn.csv')
-plot_categorical_vs_churn(df)
+plot_categorical_vs_churn(df, 'gender')

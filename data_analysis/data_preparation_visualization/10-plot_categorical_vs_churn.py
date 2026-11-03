@@ -1,44 +1,24 @@
 #!/usr/bin/env python3
-"""
-Count plots of categorical features split by the Churn target.
-"""
-import math
+"""Churn rate per category of a categorical feature."""
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 
-def plot_categorical_vs_churn(df, columns_to_plot=None):
-    """
-    Plots a count plot for each categorical column, colored by Churn.
+def plot_categorical_vs_churn(df, col):
+    """Plots the churn rate per category of col as a bar plot.
 
     Args:
-        df: pandas DataFrame
-        columns_to_plot: optional column name or list of categorical
-            columns to plot; if None, all non-numeric columns except
-            Churn are used
+        df: pandas DataFrame with a Churn column
+        col: categorical column name
 
     Returns:
         None
     """
-    if columns_to_plot is None:
-        columns_to_plot = df.select_dtypes(
-            exclude="number").columns.drop("Churn").tolist()
-    elif isinstance(columns_to_plot, str):
-        columns_to_plot = [columns_to_plot]
+    churn_rate = df.groupby(col)["Churn"].apply(
+        lambda s: (s == "Yes").mean())
 
-    n_cols = min(3, len(columns_to_plot))
-    n_rows = math.ceil(len(columns_to_plot) / n_cols)
-    fig, axes = plt.subplots(n_rows, n_cols, figsize=(5*n_cols, 4*n_rows),
-                             squeeze=False)
-    axes = axes.flatten()
-
-    for i, col in enumerate(columns_to_plot):
-        sns.countplot(data=df, x=col, hue="Churn", ax=axes[i])
-        axes[i].set_title(f"{col} vs Churn")
-        axes[i].tick_params(axis="x", rotation=45)
-
-    for ax in axes[len(columns_to_plot):]:
-        ax.set_visible(False)
-
-    plt.tight_layout()
+    plt.figure(figsize=(12, 9))
+    plt.bar(churn_rate.index, churn_rate.values)
+    plt.title(f"Churn Rate by {col}")
+    plt.ylabel("Churn Rate")
+    plt.xticks(rotation=45)
     plt.show()
