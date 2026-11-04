@@ -18,8 +18,8 @@ dataset.
 
 ## Tasks
 
-| File | Description |
-| ---- | ----------- |
-| `0-describe_data.py` | Print shape, dtypes, head, missing values and duplicate count of the dataset |
-| `8-plot_continuous_distributions.py` | Plot distributions of continuous features with KDE and boxplots |
-| `9-plot_correlation_heatmap.py` | Plot a correlation heatmap of numeric features |
+| File                                 | Description                                                                  |
+| ------------------------------------ | ---------------------------------------------------------------------------- |
+| `0-describe_data.py`                 | Print shape, dtypes, head, missing values and duplicate count of the dataset |
+| `8-plot_continuous_distributions.py` | Plot distributions of continuous features with KDE and boxplots              |
+| `9-plot_correlation_heatmap.py`      | Plot a correlation heatmap of numeric features                               |
